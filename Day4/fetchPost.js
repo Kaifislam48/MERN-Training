@@ -1,12 +1,17 @@
 // fetching data from the server or api
 
 async function fetchPosts(){
-    let posts = await fetch('https://jsonplaceholder.typicode.com/posts');
-    //console.log(posts); // Output: Response {ok: true, status: 200, statusText: "OK", headers: Headers…}
-    let data = await posts.json();
-    console.log(data); 
+    let posts = await fetch('https://jsonplaceholder.typicode.com/posts');
+    let data = await posts.json();
+    console.log(data); 
+
+    let titles = data.map((obj) => {
+        return obj.title;
+    });
+
+    let userinput = "sunt";
+    const filterPost = titles.filter((title) => title.includes(userinput));
+    filterPost.sort().reverse().map((title) => console.log(title));
 }
 
-fetchPosts();  // Output: Promise {[[PromiseStatus]]: "resolved", [[PromiseValue]]: Response}
-
- 
+fetchPosts();
